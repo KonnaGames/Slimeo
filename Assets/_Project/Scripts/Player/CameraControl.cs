@@ -32,7 +32,7 @@ public class CameraControl : MonoBehaviour
 
         Scrool += -Input.mouseScrollDelta.y * sensitivity;
         
-        MouseY = Mathf.Clamp(MouseY, 0, 50);
+        MouseY = Mathf.Clamp(MouseY, -10, 50);
         Scrool = Mathf.Clamp(Scrool, 2, 7);
         
         transform.rotation = Quaternion.Slerp(transform.rotation,
