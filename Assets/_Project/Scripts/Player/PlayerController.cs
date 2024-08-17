@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController _characterController;
+    [SerializeField] private CameraControl _cameraControl;
     [SerializeField] private Animator _animator;
 
     private PlayerState _currentState;
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.forward * vertical + transform.right * horizontal;
+        Vector3 move = _cameraControl.cameraForward * vertical + _cameraControl.transform.right * horizontal;
 
         if (move != Vector3.zero)
         {
