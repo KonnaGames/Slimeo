@@ -50,10 +50,6 @@ public class CameraControl : MonoBehaviour
 
     private void RotateVisual()
     {
-        var visualRotation = visual.rotation;
-        visualRotation.y = transform.rotation.y;
-        visual.rotation = visualRotation;
-
-        // visual.rotation = transform.rotation;
+        visual.rotation = Quaternion.Slerp(visual.rotation, Quaternion.Euler(MouseY, MouseX, 0f), 25 * Time.deltaTime);
     }
 }
