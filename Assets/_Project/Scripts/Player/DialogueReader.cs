@@ -30,7 +30,9 @@ namespace Player
         {
             if (other.TryGetComponent(out IHaveDialogue dialogue))
             {
+                if (dialogue.isDone) return;
                 currentDialogue = dialogue;
+                UIDialogue.Instance.ToggleIndicator(true);
             }
         }
 
@@ -40,6 +42,7 @@ namespace Player
             {
                 currentDialogue = null;
                 UIDialogue.Instance.HideDialogue();
+                UIDialogue.Instance.ToggleIndicator(false);
             }
         }
     }

@@ -3,12 +3,7 @@ using UnityEngine;
 
 public class MapAmbientMusic : MonoBehaviour
 {
-    private AudioSource _audioSource;
-
-    private void Awake()
-    {
-        _audioSource = GetComponent<AudioSource>();
-    }
+    [SerializeField] private AudioSource _audioSource;
 
     private void Start()
     {

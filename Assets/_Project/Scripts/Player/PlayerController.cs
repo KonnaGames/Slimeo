@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Sound Effects")] 
+    public AudioClip walk;
+    public AudioClip jump;
+    
     private CharacterController _characterController;
     [SerializeField] private CameraControl _cameraControl;
     [SerializeField] private Animator _animator;
@@ -15,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private bool _isGrounded;
-    // [SerializeField] private LayerMask _groundLayer;
+    // [SerializeField] private LayerMask _ignoreLayer;
     [SerializeField] private Transform _groundChecker;
     [SerializeField] private float _groundCheckerRadius = 0.3f;
     [SerializeField] private float _jumpHeight = 2f;
@@ -54,6 +58,7 @@ public class PlayerController : MonoBehaviour
         foreach (var hit in collisons)
         {
             if(hit.transform == transform) continue;
+            if(hit.transform.CompareTag("Dialogue Collider")) continue;
             isGrounded = true;
         }
 
@@ -73,10 +78,14 @@ public class PlayerController : MonoBehaviour
         {
             _characterController.Move(move * _moveSpeed * Time.deltaTime);
             
-            if (_currentState != PlayerState.WALK)
-                ChangeState(PlayerState.WALK);
+            ChangeState(PlayerState.WALK);
+            return;
         }
+        
+        ChangeState(PlayerState.IDLE);
     }
+
+    
 
     private void Jump()
     {
@@ -99,19 +108,33 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeState(PlayerState nextState)
     {
+        if (_currentState == nextState) return;
         _currentState = nextState;
-
+        
+        StopAllCoroutines();
+        
         switch (_currentState)
         {
             case PlayerState.IDLE:
                 //animasyonu oynat
                 break;
             case PlayerState.WALK:
+                StartCoroutine(PlayWalkSoundEffect());
                 //animasyonu oynat
                 break;
             case PlayerState.JUMP:
+                SoundEffectPlayer.Instance.PlaySoundEffect(jump);
                 //animasyonu oynat
                 break;
+        }
+    }
+    
+    private IEnumerator PlayWalkSoundEffect()
+    {
+        while (true)
+        {
+            SoundEffectPlayer.Instance.PlaySoundEffect(walk);
+            yield return new WaitForSeconds(walk.length);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DialoguSystem;
+﻿using DG.Tweening;
+using DialoguSystem;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -8,15 +9,18 @@ namespace DefaultNamespace
         public int Id { get; }
         public bool isDone { get; private set; }
         public DialogueLine _dialogueLine => dialogueLine;
-        [SerializeField] private DialogueBox DyingDialogue;
         [SerializeField] private DialogueLine dialogueLine;
+
+        [SerializeField] private GameObject BookGameObject;
+        [SerializeField] private Transform bookDestination;
 
 
         public void OnDialogueCompleted()
         {
-            Destroy(gameObject);
             isDone = true;
-            UIDialogue.Instance.StartCo(DyingDialogue, 1f, 2f);
+            BookGameObject.SetActive(true);
+            BookGameObject.transform.DOMove(bookDestination.position, 2f);
+            UIDialogue.Instance.StartCo(new DialogueBox("NPC", "Bu kitap sana yol gosterecek. Yediginden emin ol."), 1, 5);
         }
     }
 }

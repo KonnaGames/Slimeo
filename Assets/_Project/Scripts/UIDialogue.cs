@@ -11,6 +11,7 @@ namespace DefaultNamespace
         public static UIDialogue Instance;
 
         [SerializeField] private GameObject Window;
+        [SerializeField] private GameObject DialogueIndicator;
         [SerializeField] private TextMeshProUGUI speakerText;
         [SerializeField] private TextMeshProUGUI dialogueText;
 
@@ -19,6 +20,7 @@ namespace DefaultNamespace
             Instance = this;
             
             HideDialogue();
+            ToggleIndicator(false);
         }
 
         public void ShowDialogue(DialogueBox dialogueBox)
@@ -31,6 +33,12 @@ namespace DefaultNamespace
         public void HideDialogue()
         {
             Window.gameObject.SetActive(false);
+            ToggleIndicator(false);
+        }
+
+        public void ToggleIndicator(bool toggle)
+        {
+            DialogueIndicator.SetActive(toggle);
         }
 
         public void StartCo(DialogueBox dialogueBox, float delay, float duration)
@@ -43,7 +51,6 @@ namespace DefaultNamespace
             yield return new WaitForSeconds(delay);
             ShowDialogue(dialogueBox);
             yield return new WaitForSeconds(duration);
-            HideDialogue();
         }
     }
 }

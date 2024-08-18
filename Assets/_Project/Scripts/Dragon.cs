@@ -1,5 +1,6 @@
 ﻿using DialoguSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Test
 {
@@ -10,10 +11,11 @@ namespace Test
         [SerializeField] private DialogueLine dialogueLine;
         
         public DialogueLine _dialogueLine => dialogueLine;
+        
         public void OnDialogueCompleted()
         {
             isDone = true;
-            Debug.Log("Dragon Quest Completed");
+            SceneManager.LoadScene(1);
         }
     }
 }
