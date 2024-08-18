@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Dialogue Collider
+  - Trigger Box
   layers:
   - Default
   - TransparentFX
