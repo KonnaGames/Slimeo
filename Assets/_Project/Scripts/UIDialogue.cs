@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using DialoguSystem;
 using TMPro;
 using UnityEngine;
@@ -14,6 +13,7 @@ namespace DefaultNamespace
         [SerializeField] private GameObject DialogueIndicator;
         [SerializeField] private TextMeshProUGUI speakerText;
         [SerializeField] private TextMeshProUGUI dialogueText;
+        [SerializeField] private TextMeshProUGUI questTrackText;
 
         private void Awake()
         {
@@ -21,6 +21,7 @@ namespace DefaultNamespace
             
             HideDialogue();
             ToggleIndicator(false);
+            questTrackText.text = "";
         }
 
         public void ShowDialogue(DialogueBox dialogueBox)
@@ -51,6 +52,11 @@ namespace DefaultNamespace
             yield return new WaitForSeconds(delay);
             ShowDialogue(dialogueBox);
             yield return new WaitForSeconds(duration);
+        }
+
+        public void UpdateQuest(string text)
+        {
+            questTrackText.text = text;
         }
     }
 }
