@@ -26,7 +26,7 @@ namespace Test
                 // Puff Yapicak
                 // Havali Seyler olucak
                 eatable.OnAte();
-                transform.localScale *= 1.2f;
+                // transform.localScale *= 1.2f;
             }
         }
     }

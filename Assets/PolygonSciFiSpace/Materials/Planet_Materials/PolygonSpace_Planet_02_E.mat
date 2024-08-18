@@ -195,7 +195,7 @@ Material:
     - __dirty: 0
     - _frez: 16.33
     m_Colors:
-    - Color_7C11588D: {r: 0.15294118, g: 1, b: 1, a: 1}
+    - Color_7C11588D: {r: 0.15294114, g: 1, b: 1, a: 1}
     - _ASEOutlineColor: {r: 0.5181034, g: 0.4426903, b: 0.6764706, a: 0}
     - _BaseColor: {r: 0.36862746, g: 0.7960785, b: 0.7411765, a: 0}
     - _CloudColor: {r: 0, g: 0, b: 0, a: 0}

@@ -1,5 +1,6 @@
 public interface IEatable
 {
+    bool IsTriggered { get; }
     eSize size { get; }
     void OnAte();
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [SerializeField] private Transform visual;
     [SerializeField] private Camera mainCam;
     
     public float sensitivity = 0.2f;
@@ -35,13 +36,24 @@ public class CameraControl : MonoBehaviour
         MouseY = Mathf.Clamp(MouseY, -10, 50);
         Scrool = Mathf.Clamp(Scrool, 2, 7);
         
-        transform.rotation = Quaternion.Slerp(transform.rotation,
-            Quaternion.Euler(MouseY, MouseX, 0f), 
+        // Vertical
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(MouseY, MouseX, 0f), 
             25 * Time.deltaTime);
+
+        RotateVisual();
 
         // mainCam.transform.localPosition = new Vector3(0, 0, -Scrool);
         var localPos = mainCam.transform.localPosition;
 
         mainCam.transform.localPosition = Vector3.Slerp(localPos, new Vector3(0, 0, -Scrool), 20 * Time.deltaTime);
+    }
+
+    private void RotateVisual()
+    {
+        var visualRotation = visual.rotation;
+        visualRotation.y = transform.rotation.y;
+        visual.rotation = visualRotation;
+
+        // visual.rotation = transform.rotation;
     }
 }

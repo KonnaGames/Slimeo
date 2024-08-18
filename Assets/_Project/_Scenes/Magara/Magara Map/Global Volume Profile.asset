@@ -21,10 +21,10 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.465
+    m_Value: 0.15
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.43
+    m_Value: 1
   rounded:
     m_OverrideState: 1
     m_Value: 0
@@ -46,19 +46,19 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 10
   intensity:
     m_OverrideState: 1
-    m_Value: 14.4
+    m_Value: 7
   scatter:
     m_OverrideState: 1
-    m_Value: 0.86
+    m_Value: 1
   clamp:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.9528302, g: 0, b: 0, a: 1}
+    m_Value: {r: 1, g: 0, b: 0, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -121,19 +121,19 @@ MonoBehaviour:
     m_Value: 0
   focusDistance:
     m_OverrideState: 1
-    m_Value: 2.01
+    m_Value: 5
   aperture:
-    m_OverrideState: 1
-    m_Value: 4.1
+    m_OverrideState: 0
+    m_Value: 7.4
   focalLength:
     m_OverrideState: 1
-    m_Value: 47
+    m_Value: 45
   bladeCount:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 5
   bladeCurvature:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 0.927
   bladeRotation:
     m_OverrideState: 0
     m_Value: 0
