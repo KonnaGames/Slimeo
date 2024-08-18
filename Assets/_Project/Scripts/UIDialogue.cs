@@ -17,11 +17,22 @@ namespace DefaultNamespace
 
         private void Awake()
         {
-            Instance = this;
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else if (Instance != this)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
             
             HideDialogue();
             ToggleIndicator(false);
             questTrackText.text = "";
+            
+            
+            DontDestroyOnLoad(this.gameObject);
         }
 
         public void ShowDialogue(DialogueBox dialogueBox)
