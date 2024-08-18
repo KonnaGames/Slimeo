@@ -200,7 +200,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -294,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2619475423925206050}
   m_Layer: 0
-  m_Name: Map Ambient Music
+  m_Name: Music Manager
   m_TagString: Untagged
   m_Icon: {fileID: 2800000, guid: b1b079d053c3d0c41952dadf32a89ffd, type: 3}
   m_NavMeshLayer: 0
