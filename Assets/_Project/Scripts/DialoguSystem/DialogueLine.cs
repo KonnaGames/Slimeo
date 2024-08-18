@@ -9,12 +9,9 @@ namespace DialoguSystem
         public int currentIndex = 0;
         public bool isDone = false;
         public List<DialogueBox> _dialoguLines = new();
-
-        public DialogueBox PlayDialgoue()
+        public DialogueBox GetDialogue(int index)
         {
-            if (currentIndex >= _dialoguLines.Count) return null;
-
-            return _dialoguLines[currentIndex++];
+            return _dialoguLines[index];
         }
     }
 }

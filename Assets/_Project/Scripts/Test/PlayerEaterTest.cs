@@ -8,17 +8,6 @@ namespace Test
     {
         private DialogueLine currentDialogue;
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.E)) Debug.Log(currentDialogue.PlayDialgoue()?.Text);
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.TryGetComponent(out IHaveDialogue dialogue)) currentDialogue = dialogue.GetDialogueLine;
-        }
-
-
         private void OnTriggerStay(Collider other)
         {
             if (other.TryGetComponent(out IEatable eatable))
