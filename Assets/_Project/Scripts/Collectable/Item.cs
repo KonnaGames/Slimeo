@@ -11,8 +11,8 @@ public class Item : MonoBehaviour, IEatable
     private Vector3 _defaultScale;
 
 
-    public bool IsTriggered => throw new System.NotImplementedException();
-    public eSize Size => throw new System.NotImplementedException();
+    public bool IsTriggered { get; private set; }
+    public eSize Size { get; }
 
     private void Start()
     {

@@ -35,7 +35,7 @@ public class PlayerScaleController : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         currentScaleIndex = 0;
         currentEatenSlimeCount = 0;
-        SetScale();
+        SetScale(SlimeSize);
     }
 
     public void IncreaseEatenSlimeCount()
@@ -58,11 +58,14 @@ public class PlayerScaleController : MonoBehaviour
         }
     }
    
-    private void SetScale()
+    private void SetScale(eSize? size = null)
     {
-        if (currentScaleIndex >= Enum.GetValues(typeof(eSize)).Length) return;
-        
-        SlimeSize = (eSize)currentScaleIndex;
+        if (size == null)
+        {
+            if (currentScaleIndex >= Enum.GetValues(typeof(eSize)).Length) return;
+        }
+
+        SlimeSize = size ?? (eSize)currentScaleIndex;
         
         float getScale = GetScaleByEnum(SlimeSize);
         Vector3 newScale = Vector3.one * getScale;

@@ -1,9 +1,9 @@
-using System;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
     [SerializeField] private Transform target;
+    [SerializeField] private Transform CameraHolder;
     [SerializeField] private Transform visual;
     [SerializeField] private Camera mainCam;
     
@@ -25,7 +25,8 @@ public class CameraControl : MonoBehaviour
         MouseY = transform.rotation.eulerAngles.x;
     }
 
-
+    private float GScroll = 10;
+    
     private void LateUpdate()
     {
         MouseX += Input.GetAxisRaw("Mouse X") * sensitivity;
@@ -34,7 +35,9 @@ public class CameraControl : MonoBehaviour
         Scrool += -Input.mouseScrollDelta.y * sensitivity;
         
         MouseY = Mathf.Clamp(MouseY, -10, 50);
-        Scrool = Mathf.Clamp(Scrool, 2, 30);
+        Scrool = Mathf.Clamp(Scrool, 8, 30);
+
+        GScroll = Scrool / 5f;
         
         // Vertical
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(MouseY, MouseX, 0f), 
@@ -42,12 +45,31 @@ public class CameraControl : MonoBehaviour
 
         RotateVisual();
 
-        // mainCam.transform.localPosition = new Vector3(0, 0, -Scrool);
         var localPos = mainCam.transform.localPosition;
 
-        mainCam.transform.localPosition = Vector3.Slerp(localPos, new Vector3(0, 0, -Scrool), 20 * Time.deltaTime);
+        mainCam.transform.localPosition = Vector3.Slerp(localPos, new Vector3(0, 0, -GetMaxDistance(Scrool)), 20 * Time.deltaTime);
+    }
 
-        mainCam.transform.LookAt(target);
+    private float GetMaxDistance(float maxDistance)
+    {
+        Ray ray = new Ray(CameraHolder.position, -mainCam.transform.forward);
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, maxDistance / 5f))
+        {
+            if (!hit.transform.IsChildOf(target))
+            {
+                return hit.distance * 5;
+            }
+        }
+
+        return maxDistance;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(CameraHolder.position  , (mainCam.transform.position - CameraHolder.position).normalized * GScroll);
     }
 
     private void RotateVisual()

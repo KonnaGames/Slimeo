@@ -64,7 +64,10 @@ public class PlayerController : MonoBehaviour
                            .OnComplete(() =>
                            {
                                item.transform.parent = null;
-                               item.AddComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 2000);
+                               
+                               var rigid = item.AddComponent<Rigidbody>();
+                               rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                               rigid.AddForce(Camera.main.transform.forward * 25, ForceMode.Impulse);
                            });
                     });
                 }
