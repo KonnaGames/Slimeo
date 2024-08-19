@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
                            .OnComplete(() =>
                            {
                                item.transform.parent = null;
-                               
+                               Debug.Log("Firlatti");
                                var rigid = item.AddComponent<Rigidbody>();
                                rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
                                rigid.AddForce(Camera.main.transform.forward * 25, ForceMode.Impulse);

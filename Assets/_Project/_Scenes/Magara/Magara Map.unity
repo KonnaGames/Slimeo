@@ -5144,7 +5144,7 @@ MonoBehaviour:
     isDone: 0
     _dialoguLines:
     - SpeakerName: Slime
-      Text: Ho ho sen de kimsin?
+      Text: sdfasdfads
     - SpeakerName: NPC
       Text: Ben buralarin yaraticisiyim. Peki ya sen kimsin
     - SpeakerName: Slime
@@ -14884,7 +14884,7 @@ PrefabInstance:
     - target: {fileID: 5981338682139377446, guid: ef9458068ad58d145abe788aca8d73b7,
         type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 6011156123859009246, guid: ef9458068ad58d145abe788aca8d73b7,
         type: 3}
