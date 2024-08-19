@@ -1,3 +1,5 @@
+using System;
+using System.Drawing;
 using DG.Tweening;
 using UnityEngine;
 
@@ -7,10 +9,15 @@ public class PlayerScaleController : MonoBehaviour
 
     private const int MAX_EATEN_COUNT = 2;
     
-    public Vector3 SlimeSize;
+    public eSize SlimeSize;
     
     private float[] allSlimeScale = new float[] {0.2f, 0.4f, 0.6f, 0.8f, 1.1f, 1.3f};
     private int currentScaleIndex;
+
+    public float GetScaleByEnum(eSize size)
+    {
+        return allSlimeScale[(int)size];
+    }
     
     private PlayerController _playerController;
     private int currentEatenSlimeCount;
@@ -39,9 +46,6 @@ public class PlayerScaleController : MonoBehaviour
 
     private void CheckScale()
     {
-
-        Debug.Log(currentEatenSlimeCount);
-
         if (currentEatenSlimeCount == MAX_EATEN_COUNT)
         {
             currentScaleIndex++;
@@ -56,11 +60,16 @@ public class PlayerScaleController : MonoBehaviour
    
     private void SetScale()
     {
-        SlimeSize = Vector3.one * allSlimeScale[currentScaleIndex];
+        if (currentScaleIndex >= Enum.GetValues(typeof(eSize)).Length) return;
+        
+        SlimeSize = (eSize)currentScaleIndex;
+        
+        float getScale = GetScaleByEnum(SlimeSize);
+        Vector3 newScale = Vector3.one * getScale;
         
         if (currentScaleIndex != 0)
-            _playerController.transform.DOScale(SlimeSize, 0.5f);
+            _playerController.transform.DOScale(newScale, 0.5f);
         else
-            _playerController.transform.localScale = SlimeSize;
+            _playerController.transform.localScale = newScale;
     }
 }

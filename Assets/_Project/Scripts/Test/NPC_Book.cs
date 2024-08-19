@@ -7,8 +7,8 @@ namespace Test
 {
     public class NPC_Book : MonoBehaviour, IEatable
     {
-        public bool IsTriggered { get; private set; }
-        public eSize size { get; } = eSize.Small;
+        public bool IsTriggered { get; set; }
+        public eSize Size { get; } = eSize.Small;
 
         [SerializeField] private CaveDoor _caveDoor;
 

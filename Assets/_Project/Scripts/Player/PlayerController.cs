@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
             if(hit.transform == transform) continue;
             if(hit.transform.CompareTag("Dialogue Collider")) continue;
             if(hit.transform.CompareTag("Trigger Box")) continue;
+            if(hit.transform.IsChildOf(transform)) continue;
             isGrounded = true;
         }
 

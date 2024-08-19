@@ -6,7 +6,7 @@ public class AIController : MonoBehaviour
 {
     public bool IsDamage = true;
 
-    public Vector3 SlimeSize;
+    public eSize SlimeSize;
     public bool _isAttackable;
 
     public bool IsAttackable 
@@ -46,11 +46,17 @@ public class AIController : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
-
-        SlimeSize = transform.localScale;
+        
         _agent.speed = _moveSpeed;
 
+        SetScaleSizeAtStart();
         StartingAnimation();
+    }
+    
+    private void SetScaleSizeAtStart()
+    {
+        float scale = PlayerScaleController.Instance.GetScaleByEnum(SlimeSize);
+        transform.localScale = new Vector3(scale, scale, scale);
     }
 
     void Update()
@@ -126,7 +132,7 @@ public class AIController : MonoBehaviour
 
         Vector3 destination = transform.position;
 
-        if (SlimeSize.magnitude <= PlayerScaleController.Instance.SlimeSize.magnitude)
+        if ((int)SlimeSize <= (int)PlayerScaleController.Instance.SlimeSize)
         {
             Vector3 direction = (transform.position - TargetPlayer.transform.position).normalized;
             destination = transform.position + direction * _agent.stoppingDistance * 3;
@@ -160,19 +166,6 @@ public class AIController : MonoBehaviour
         _agent.SetDestination(destination);
         yield return new WaitUntil(() => _targetPointReached);
         SetTarget();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject != null)
-        {
-            Debug.Log(other.gameObject.name);
-        }
-
-        if (other.TryGetComponent(out PlayerHealth playerHealth))
-        {
-            playerHealth.Damage(1);
-        }
     }
 }
 

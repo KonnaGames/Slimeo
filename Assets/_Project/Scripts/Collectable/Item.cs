@@ -12,7 +12,7 @@ public class Item : MonoBehaviour, IEatable
 
 
     public bool IsTriggered => throw new System.NotImplementedException();
-    public eSize size => throw new System.NotImplementedException();
+    public eSize Size => throw new System.NotImplementedException();
 
     private void Start()
     {

@@ -1,22 +1,25 @@
+using System;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class EatableSlime : MonoBehaviour, IEatable
 {
     [SerializeField] private AIController _controller;
     private bool _eaten = false;
 
-    public bool IsTriggered => throw new System.NotImplementedException();
+    public bool IsTriggered { get; private set; }
 
-    public eSize size => throw new System.NotImplementedException();
-     
+    public eSize Size => _controller.SlimeSize;
+
     public void OnAte()
     {
-        if (PlayerScaleController.Instance.SlimeSize.magnitude >= _controller.SlimeSize.magnitude && !_eaten)
+        if (PlayerScaleController.Instance.SlimeSize >= _controller.SlimeSize && !_eaten)
         {
             _eaten = true;
+            IsTriggered = true;
             _controller.IsAttackable = false;
             EnemyManager.Instance.ActivateEnemiesAttack();
 
@@ -27,6 +30,8 @@ public class EatableSlime : MonoBehaviour, IEatable
                 PlayerScaleController.Instance.IncreaseEatenSlimeCount();
                 _controller.gameObject.SetActive(false);
             });
+            
+            Debug.Log("Slime Yendi");
         }
     }
 }
