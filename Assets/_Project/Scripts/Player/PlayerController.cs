@@ -1,9 +1,11 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Transform _spikePos;
+
     [Header("Sound Effects")] 
     public AudioClip walk;
     public AudioClip jump;
@@ -11,7 +13,6 @@ public class PlayerController : MonoBehaviour
     private CharacterController _characterController;
     [SerializeField] private CameraControl _cameraControl;
     [SerializeField] private Animator _animator;
-
     private PlayerState _currentState;
     
     [Header("Movement")]
@@ -19,7 +20,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private bool _isGrounded;
-    // [SerializeField] private LayerMask _ignoreLayer;
     [SerializeField] private Transform _groundChecker;
     [SerializeField] private float _groundCheckerRadius = 0.3f;
     [SerializeField] private float _jumpHeight = 2f;
@@ -35,18 +35,38 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         _isGrounded = CheckIsGrounded();
-
-        EatLogic();
+        ShootSpike();
         Gravity();
         Movement();
         Jump();
     }
 
-    private void EatLogic()
+    private void ShootSpike()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // Ray ray = new Ray(transform.position, )
+            if (!Inventory.Instance.CheckCapacity())
+            {
+                var item = Inventory.Instance.GetItem();
+
+                if (item != null)
+                {
+                    item.transform.SetParent(transform);
+                    item.transform.position = transform.position;
+
+                    item.transform.DOScale(Vector3.one, 0.2f)
+                    .OnComplete(() =>
+                    {
+                        item.transform.forward = Camera.main.transform.forward;
+                        item.transform.DOMove(_spikePos.position, 0.5f)
+                           .OnComplete(() =>
+                           {
+                               item.transform.parent = null;
+                               item.AddComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 2000);
+                           });
+                    });
+                }
+            }
         }
     }
 
@@ -85,8 +105,6 @@ public class PlayerController : MonoBehaviour
         
         ChangeState(PlayerState.IDLE);
     }
-
-    
 
     private void Jump()
     {

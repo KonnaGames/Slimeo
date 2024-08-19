@@ -18,7 +18,7 @@ public class CameraControl : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false  ;
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
         MouseX = transform.rotation.eulerAngles.y;
@@ -34,7 +34,7 @@ public class CameraControl : MonoBehaviour
         Scrool += -Input.mouseScrollDelta.y * sensitivity;
         
         MouseY = Mathf.Clamp(MouseY, -10, 50);
-        Scrool = Mathf.Clamp(Scrool, 2, 7);
+        Scrool = Mathf.Clamp(Scrool, 2, 30);
         
         // Vertical
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(MouseY, MouseX, 0f), 
