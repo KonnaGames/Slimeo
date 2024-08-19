@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         ChangeState(PlayerState.IDLE);
+
+        PlayerHealth.Instance.SetHearthCount(1);
     }
 
     private void Update()

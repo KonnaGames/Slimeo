@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-using DG.Tweening;
 
-public class AIController : MonoBehaviour, IEatable
+public class AIController : MonoBehaviour
 {
+    public bool IsDamage = true;
+
     public Vector3 SlimeSize;
     public bool _isAttackable;
 
@@ -24,12 +25,10 @@ public class AIController : MonoBehaviour, IEatable
                 SetTarget();
             }
         } 
-    }
-    public bool IsTriggered => throw new System.NotImplementedException();
-    public eSize size => throw new System.NotImplementedException();
+    } 
 
     [SerializeField] private StartAnimationState _startAnimationState;
-    [SerializeField] private PlayerController _targetPlayer;  
+    [SerializeField] public PlayerController TargetPlayer;  
     
     private Animator _animator;
     private NavMeshAgent _agent;
@@ -70,7 +69,7 @@ public class AIController : MonoBehaviour, IEatable
                 StartCoroutine(RandomMove());
         }
     }
-    
+
     private void StartingAnimation()
     {
         switch (_startAnimationState)
@@ -122,17 +121,17 @@ public class AIController : MonoBehaviour, IEatable
 
     private void SetTarget()
     {
-        if (!IsAttackable || _targetPlayer == null)
+        if (!IsAttackable || TargetPlayer == null)
             return;
 
         Vector3 destination = transform.position;
 
         if (SlimeSize.magnitude <= PlayerScaleController.Instance.SlimeSize.magnitude)
         {
-            Vector3 direction = (transform.position - _targetPlayer.transform.position).normalized;
+            Vector3 direction = (transform.position - TargetPlayer.transform.position).normalized;
             destination = transform.position + direction * _agent.stoppingDistance * 3;
 
-            if (Vector3.Distance(transform.position , _targetPlayer.transform.position)  < _safeDistance)
+            if (Vector3.Distance(transform.position , TargetPlayer.transform.position)  < _safeDistance)
             {
                 Vector3 randomDirection;
                 do
@@ -140,7 +139,7 @@ public class AIController : MonoBehaviour, IEatable
                     randomDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
                     destination = transform.position + randomDirection * Random.Range(1f, _safeDistance);
                 }
-                while (Vector3.Dot(randomDirection, (_targetPlayer.transform.position - transform.position).normalized) > 0);
+                while (Vector3.Dot(randomDirection, (TargetPlayer.transform.position - transform.position).normalized) > 0);
             }
             else
             {
@@ -149,7 +148,7 @@ public class AIController : MonoBehaviour, IEatable
         }
         else 
         {
-            destination = _targetPlayer.transform.position;
+            destination = TargetPlayer.transform.position;
         }
 
         StartCoroutine(MoveToTarget(destination));
@@ -163,20 +162,16 @@ public class AIController : MonoBehaviour, IEatable
         SetTarget();
     }
 
-    public void OnAte()
+    private void OnTriggerEnter(Collider other)
     {
-        if (PlayerScaleController.Instance.SlimeSize.magnitude >= SlimeSize.magnitude)
+        if (other.gameObject != null)
         {
-            IsAttackable = false;
-            EnemyManager.Instance.ActivateEnemiesAttack();
+            Debug.Log(other.gameObject.name);
+        }
 
-            transform.DOMove(_targetPlayer.transform.position, 0.5f);
-            transform.DOScale(Vector3.zero, 0.3f)
-            .OnComplete(() =>
-            {
-                gameObject.SetActive(false);
-                PlayerScaleController.Instance.IncreaseEatenSlimeCount();
-            });
+        if (other.TryGetComponent(out PlayerHealth playerHealth))
+        {
+            playerHealth.Damage(1);
         }
     }
 }

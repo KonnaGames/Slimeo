@@ -39,6 +39,9 @@ public class PlayerScaleController : MonoBehaviour
 
     private void CheckScale()
     {
+
+        Debug.Log(currentEatenSlimeCount);
+
         if (currentEatenSlimeCount == MAX_EATEN_COUNT)
         {
             currentScaleIndex++;
@@ -46,6 +49,7 @@ public class PlayerScaleController : MonoBehaviour
             if (currentScaleIndex > allSlimeScale.Length)
                 return;
 
+            currentEatenSlimeCount = 0;
             SetScale();
         }
     }
@@ -58,7 +62,5 @@ public class PlayerScaleController : MonoBehaviour
             _playerController.transform.DOScale(SlimeSize, 0.5f);
         else
             _playerController.transform.localScale = SlimeSize;
-
-        currentScaleIndex = 0;
     }
 }

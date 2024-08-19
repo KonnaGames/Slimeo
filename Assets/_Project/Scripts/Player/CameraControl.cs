@@ -46,6 +46,8 @@ public class CameraControl : MonoBehaviour
         var localPos = mainCam.transform.localPosition;
 
         mainCam.transform.localPosition = Vector3.Slerp(localPos, new Vector3(0, 0, -Scrool), 20 * Time.deltaTime);
+
+        mainCam.transform.LookAt(target);
     }
 
     private void RotateVisual()
