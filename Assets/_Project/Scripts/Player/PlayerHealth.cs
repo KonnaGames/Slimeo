@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Test;
 using UnityEngine;
 
@@ -15,23 +16,21 @@ public class PlayerHealth : MonoBehaviour
     public EatableSlime lastHit = null;
 
     [SerializeField] private int hearthCount;
+    [SerializeField] private Renderer _renderer;
+    private float blinkDuration = 0.1f;
+    private int blinkCount = 5;
 
     private void Awake()
     {
         if (Instance == null)
-        {
             Instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
-        
     }
 
     public void SetHearthCount(int count)
@@ -42,6 +41,8 @@ public class PlayerHealth : MonoBehaviour
     public void Damage(int value)
     {
         hearthCount -= value;
+        StartCoroutine(Blink());
+        Debug.Log("Took Damage");
     }
 
     public void Die()
@@ -49,6 +50,16 @@ public class PlayerHealth : MonoBehaviour
         IsPlay = false;
     }
 
+    private IEnumerator Blink()
+    {
+        for (int i = 0; i < blinkCount; i++)
+        {
+            _renderer.enabled = false;
+            yield return new WaitForSeconds(blinkDuration);
+            _renderer.enabled = true;
+            yield return new WaitForSeconds(blinkDuration);
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent(out EatableSlime eatable))

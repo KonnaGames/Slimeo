@@ -44,7 +44,7 @@ public class AIController : MonoBehaviour
 
     void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();
+        _agent = GetComponent<NavMeshAgent>(); 
         _animator = GetComponent<Animator>();
         
         _agent.speed = _moveSpeed;
