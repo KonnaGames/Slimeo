@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Test;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -44,17 +45,15 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine(Blink());
         
         if (hearthCount <= 0)
-            StartCoroutine(DieDelay());
-     
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         Debug.Log("Took Damage");
     }
      
     private IEnumerator DieDelay()
     {
-        IsDie = true;
         yield return new WaitForSeconds(2f);
-        EnemyManager.Instance.RestartFight();
-        IsDie = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private IEnumerator Blink()

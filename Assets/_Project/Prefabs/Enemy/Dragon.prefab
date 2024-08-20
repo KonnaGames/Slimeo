@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2389567d15166da4cbfbd30f874251f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hearthCount: 10
+  _hearthCount: 5
   _renderer: {fileID: 7311065701908676347}
 --- !u!65 &3656262854536426021
 BoxCollider:
@@ -205,17 +205,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 84d743099e804004c8b64b323124bf2d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 63.61
+      value: 76.33789
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84d743099e804004c8b64b323124bf2d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.73816967
+      value: 0.8626746
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84d743099e804004c8b64b323124bf2d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41.56
+      value: 35.797264
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 84d743099e804004c8b64b323124bf2d,
         type: 3}
@@ -325,7 +325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d406739471a6442a3d7be0f313c848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetPlayer: {fileID: 0}
   _dragonMeleeAttack: {fileID: 2680166333966540167}
   _fireBallPrefab: {fileID: 1713950327292654406, guid: 3d5008e441421af4ea3c1a4f333473e9,
     type: 3}

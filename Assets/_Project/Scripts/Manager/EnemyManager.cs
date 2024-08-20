@@ -13,9 +13,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private Transform _playerSpawnTranform;
 
     [SerializeField] private List<GameObject> _enemyList = new List<GameObject>();
-    private List<Vector3> _slimesPos = new List<Vector3>();
+    [SerializeField] private List<Transform> _slimesPos = new List<Transform>();
+    [SerializeField] List<GameObject> _spawnedSlimes = new List<GameObject>();
 
-    private EnemeyStates _enemeyStates = EnemeyStates.DRAGON;
     private bool _isEnemiesAttackableActive;
 
     private void Awake()
@@ -24,15 +24,6 @@ public class EnemyManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-    }
-
-    private void Start()
-    {
-        foreach (var enemy in _enemyList)
-        {
-            enemy.GetComponent<AIController>().IsAttackable = false;
-            _slimesPos.Add(enemy.transform.position);
-        }
     }
 
     public void ActivateEnemiesAttack()
@@ -56,52 +47,12 @@ public class EnemyManager : MonoBehaviour
         }
 
         if (count >= _enemyList.Count)
-            _enemeyStates = EnemeyStates.DRAGON;
-
-        if (!PlayerHealth.Instance.IsDie)
         {
-            _playerSpawnTranform = PlayerHealth.Instance.transform.parent.transform;
-            Instantiate(_dragonPrefab, _dragonSpawnTransform.position, Quaternion.identity);
-            PlayerHealth.Instance.transform.parent.position = _playerSpawnTranform.position;
-            return;
-        } 
-        RestartFight();
-    }
-
-    public void RestartFight()
-    {
-        switch (_enemeyStates)
-        {
-            case EnemeyStates.SLIME:
-                SpawnSlimes();
-                break;
-            case EnemeyStates.DRAGON:
-                SpawnDragon();
-                break;
+            if (!PlayerHealth.Instance.IsDie)
+            {
+                Instantiate(_dragonPrefab, _dragonSpawnTransform.position, Quaternion.identity);
+                PlayerHealth.Instance.SetHearthCount(5);
+            }
         }
     }
-
-    private void SpawnSlimes()
-    {
-        for (int i = 0; i < _enemyList.Count; i++)
-        {
-            AIController slime = Instantiate(_enemyList[i]).GetComponent<AIController>();
-            slime.IsAttackable = true;
-            slime.transform.position = _slimesPos[i];
-        }
-        Instantiate(_playerPrefab,_playerSpawnTranform.position,Quaternion.identity);
-    }
-
-    private void SpawnDragon()
-    {
-        Instantiate(_dragonPrefab, _dragonSpawnTransform.position, Quaternion.identity);
-        PlayerHealth playerHealth = Instantiate(_playerPrefab, _playerSpawnTranform.position, Quaternion.identity).GetComponent<PlayerController>().PlayerHealth;
-        playerHealth.SetHearthCount(5);
-    }
-
-}
-public enum EnemeyStates
-{
-    SLIME,
-    DRAGON
 }

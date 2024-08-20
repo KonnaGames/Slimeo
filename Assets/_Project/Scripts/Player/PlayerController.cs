@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _gravity = -9.81f;
     private Vector3 _velocity;
 
+
     private void Start()
     {
         _characterController = GetComponent<CharacterController>();
