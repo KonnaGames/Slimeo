@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.5
+  m_AmbientIntensity: 2.49
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.20919915, g: 0.033775374, b: 0.31132078, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -9106,6 +9106,11 @@ PrefabInstance:
       propertyPath: TargetPlayer
       value: 
       objectReference: {fileID: 1248874980}
+    - target: {fileID: 4221493211632618313, guid: f5d07d4be49b0044f84021bd818296bc,
+        type: 3}
+      propertyPath: PlayerTransform
+      value: 
+      objectReference: {fileID: 1223749164}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15034,6 +15039,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 5974082761937162289, guid: ef9458068ad58d145abe788aca8d73b7,
+        type: 3}
+      propertyPath: Visual
+      value: 
+      objectReference: {fileID: 1223749162}
     - target: {fileID: 6011156123859009246, guid: ef9458068ad58d145abe788aca8d73b7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23123,6 +23133,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 406762, guid: 4826291520ac5f040b489ad1fe0b9d83,
     type: 3}
   m_PrefabInstance: {fileID: 1218775277}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1223749162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5013068246963083235, guid: ef9458068ad58d145abe788aca8d73b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 790356826}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1223749164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5681906304347934041, guid: ef9458068ad58d145abe788aca8d73b7,
+    type: 3}
+  m_PrefabInstance: {fileID: 790356826}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1226519019
 PrefabInstance:

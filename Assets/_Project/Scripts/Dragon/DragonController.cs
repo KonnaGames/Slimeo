@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class DragonController : MonoBehaviour
 {
-    [SerializeField] private PlayerController TargetPlayer;
+    private Transform PlayerTransform;
     [SerializeField] private DragonMeleeAttack _dragonMeleeAttack;
 
     [SerializeField] public GameObject _fireBallPrefab;
@@ -18,6 +18,7 @@ public class DragonController : MonoBehaviour
 
     private void Start()
     {
+        PlayerTransform = PlayerHealth.Instance.transform;
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
 
@@ -49,7 +50,7 @@ public class DragonController : MonoBehaviour
             else
             {
                 _agent.isStopped = false;
-                _agent.SetDestination(TargetPlayer.transform.position);
+                _agent.SetDestination(PlayerTransform.position);
             }
 
             yield return null;
@@ -91,7 +92,7 @@ public class DragonController : MonoBehaviour
         fireBall.transform.position = _fireBallSpawnPoint.position;
         fireBall.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
 
-        Vector3 direction = (TargetPlayer.transform.position - _fireBallSpawnPoint.position).normalized;
+        Vector3 direction = (PlayerTransform.position - _fireBallSpawnPoint.position).normalized;
         fireBall.AddComponent<Rigidbody>().AddForce(direction * 50, ForceMode.Impulse);
 
         yield return new WaitForSeconds(5f);
@@ -101,6 +102,11 @@ public class DragonController : MonoBehaviour
 
     private float GetDistance()
     {
-        return Vector3.Distance(transform.position, TargetPlayer.transform.position);
+        if (PlayerTransform == null)
+        {
+            Debug.Log("Target Null");
+        }
+        
+        return Vector3.Distance(transform.position, PlayerTransform.position);
     }
 }

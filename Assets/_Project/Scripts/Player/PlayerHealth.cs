@@ -16,7 +16,7 @@ public class PlayerHealth : MonoBehaviour
     public EatableSlime lastHit = null;
 
     [SerializeField] private int hearthCount;
-    [SerializeField] private Renderer _renderer;
+    [SerializeField] private GameObject Visual;
     private float blinkDuration = 0.1f;
     private int blinkCount = 5;
 
@@ -61,9 +61,9 @@ public class PlayerHealth : MonoBehaviour
     {
         for (int i = 0; i < blinkCount; i++)
         {
-            _renderer.enabled = false;
+            Visual.SetActive(false);
             yield return new WaitForSeconds(blinkDuration);
-            _renderer.enabled = true;
+            Visual.SetActive(true);
             yield return new WaitForSeconds(blinkDuration);
         }
     }
