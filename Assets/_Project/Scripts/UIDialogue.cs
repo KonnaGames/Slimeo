@@ -15,6 +15,8 @@ namespace DefaultNamespace
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private TextMeshProUGUI questTrackText;
 
+        public bool AutoDiagloue = false;
+
         private void Awake()
         {
             if (Instance == null)
@@ -50,6 +52,7 @@ namespace DefaultNamespace
 
         public void ToggleIndicator(bool toggle)
         {
+            if (AutoDiagloue) return;
             DialogueIndicator.SetActive(toggle);
         }
 
@@ -65,6 +68,29 @@ namespace DefaultNamespace
             yield return new WaitForSeconds(duration);
         }
 
+        public void StartAutoDialogue(IHaveDialogue haveDialogue, float delay)
+        {
+            StartCoroutine(StartAutoDialogueCO(haveDialogue , delay));
+        }
+        
+        private IEnumerator StartAutoDialogueCO(IHaveDialogue haveDialogue, float delay)
+        {
+            AutoDiagloue = true;
+
+            int currentIndex = 0;
+            while (currentIndex < haveDialogue._dialogueLine._dialoguLines.Count)
+            {
+                ShowDialogue(haveDialogue.GetNextDialogue());
+                currentIndex++;
+                yield return new WaitForSeconds(delay);
+            }
+            
+            HideDialogue();
+            AutoDiagloue = false;
+
+            yield return null;
+        }
+        
         public void UpdateQuest(string text)
         {
             questTrackText.text = text;

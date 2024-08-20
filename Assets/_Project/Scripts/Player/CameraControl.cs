@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class CameraControl : MonoBehaviour
@@ -16,6 +17,8 @@ public class CameraControl : MonoBehaviour
 
     private float Scrool = 5;
 
+    private bool isDiaglogueCamera = false;
+
     private void Start()
     {
         Cursor.visible = false;
@@ -29,6 +32,9 @@ public class CameraControl : MonoBehaviour
     
     private void LateUpdate()
     {
+        if (isDiaglogueCamera) return;
+        
+        
         MouseX += Input.GetAxisRaw("Mouse X") * sensitivity;
         MouseY += -Input.GetAxisRaw("Mouse Y") * sensitivity;
 
@@ -70,6 +76,16 @@ public class CameraControl : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(CameraHolder.position  , (mainCam.transform.position - CameraHolder.position).normalized * GScroll);
+    }
+
+    public void ToggleDialogueCamera(bool toggle)
+    {
+        isDiaglogueCamera = toggle;
+    }
+
+    public void LookAtTarget(Transform target)
+    {
+        mainCam.transform.DOLookAt(target.position, 0.5f);
     }
 
     private void RotateVisual()

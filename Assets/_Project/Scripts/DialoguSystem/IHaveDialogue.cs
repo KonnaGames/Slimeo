@@ -15,6 +15,7 @@ namespace DialoguSystem
                 return new DialogueBox();
             }
             var dialogueBox = _dialogueLine.GetDialogue(_dialogueLine.currentIndex++);
+            dialogueBox.Event?.Invoke();
 
             return dialogueBox;
         }

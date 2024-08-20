@@ -5,6 +5,7 @@ using DG.Tweening;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Transform _spikePos;
+    [SerializeField] private Transform Visual;
 
     [Header("Sound Effects")] 
     public AudioClip walk;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     
     [Header("Movement")]
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private bool dialoguMovement;
 
     [Header("Jump")]
     [SerializeField] private bool _isGrounded;
@@ -43,6 +45,11 @@ public class PlayerController : MonoBehaviour
         Jump();
     }
 
+    public void ToggleDialogeMovement(bool toggle)
+    {
+        dialoguMovement = toggle;
+    }
+
     private void ShootSpike()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -63,11 +70,11 @@ public class PlayerController : MonoBehaviour
                         item.transform.DOMove(_spikePos.position, 0.5f)
                            .OnComplete(() =>
                            {
-                               item.transform.parent = null;
                                Debug.Log("Firlatti");
                                var rigid = item.AddComponent<Rigidbody>();
                                rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
-                               rigid.AddForce(Camera.main.transform.forward * 25, ForceMode.Impulse);
+                               rigid.AddForce(Visual.forward * 35, ForceMode.Impulse);
+                               item.transform.parent = null;
                            });
                     });
                 }
@@ -94,6 +101,7 @@ public class PlayerController : MonoBehaviour
     
     private void Movement()
     {
+        
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
         
@@ -101,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = _cameraControl.cameraForward * vertical + _cameraControl.transform.right * horizontal;
 
-        if (move != Vector3.zero)
+        if (move != Vector3.zero && !dialoguMovement)
         {
             _characterController.Move(move * _moveSpeed * Time.deltaTime);
             
