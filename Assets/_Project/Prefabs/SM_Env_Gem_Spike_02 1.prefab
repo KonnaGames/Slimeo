@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 4452361666347377875}
   - component: {fileID: 8749363800854062935}
   m_Layer: 0
-  m_Name: SM_Env_Gem_Spike_02
+  m_Name: SM_Env_Gem_Spike_02 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

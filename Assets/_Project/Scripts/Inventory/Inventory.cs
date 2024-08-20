@@ -5,7 +5,8 @@ using System.Collections.Generic;
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
-    
+
+    [SerializeField] private GameObject _spikePrefab;
     private const int CAPACITY = 1;
     private List<GameObject> collectables = new List<GameObject>();
 
@@ -21,7 +22,8 @@ public class Inventory : MonoBehaviour
     {
         if (CheckCapacity())
         {
-            GameObject cloneItem = Instantiate(item.gameObject);
+            GameObject cloneItem = Instantiate(_spikePrefab,transform.parent);
+            cloneItem.transform.position = Vector3.zero;
             collectables.Add(cloneItem);
             UIInventory.Instance.AddIcon(item);
         }

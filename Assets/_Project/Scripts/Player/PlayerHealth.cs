@@ -60,6 +60,7 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(blinkDuration);
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.TryGetComponent(out EatableSlime eatable))
