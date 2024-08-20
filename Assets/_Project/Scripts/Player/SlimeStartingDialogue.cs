@@ -15,8 +15,8 @@ namespace Player
 
         private IEnumerator Start()
         {
-            yield return new WaitForSeconds(3);
-            UIDialogue.Instance.StartAutoDialogue(this, 1);
+            yield return new WaitForSeconds(1);
+            UIDialogue.Instance.StartAutoDialogue(this, 2);
         }
 
         public void OnDialogueCompleted()
