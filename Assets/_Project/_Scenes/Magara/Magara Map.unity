@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 2.49
+  m_AmbientIntensity: 0.5
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.20919915, g: 0.033775374, b: 0.31132078, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -5359,6 +5359,12 @@ MonoBehaviour:
     - SpeakerName: ...
       Text: I know, I am not perfect either. Anyway good luck with that over growth
         lizard little slime
+      Event:
+        m_PersistentCalls:
+          m_Calls: []
+    - SpeakerName: ...
+      Text: Ahh.. Before i forgat. Just use cristals "E" to kill the lizard and be
+        gone already..
       Event:
         m_PersistentCalls:
           m_Calls:
@@ -14938,7 +14944,7 @@ PrefabInstance:
     - target: {fileID: 6011156123859009246, guid: ef9458068ad58d145abe788aca8d73b7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 49.3
+      value: 25.54
       objectReference: {fileID: 0}
     - target: {fileID: 6011156123859009246, guid: ef9458068ad58d145abe788aca8d73b7,
         type: 3}
@@ -14948,7 +14954,7 @@ PrefabInstance:
     - target: {fileID: 6011156123859009246, guid: ef9458068ad58d145abe788aca8d73b7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 92.38
+      value: -48.14
       objectReference: {fileID: 0}
     - target: {fileID: 6011156123859009246, guid: ef9458068ad58d145abe788aca8d73b7,
         type: 3}
@@ -21802,6 +21808,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: dragon talk
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 063ce6cb35795d44eb00f857adc1c4e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 063ce6cb35795d44eb00f857adc1c4e3,
         type: 3}
@@ -30991,6 +31002,86 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 131ea53cf3b9d0245b3e1a6840d4e4b4, type: 3}
+--- !u!1001 &1697550376
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1309606287673062080, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_Name
+      value: Hazine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 88.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7013087
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -90.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9968831
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.07889394
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -9.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c9e8eb5dec332134dbdfccf07844caeb, type: 3}
+--- !u!114 &1697550377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8292894288213009210, guid: c9e8eb5dec332134dbdfccf07844caeb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1697550376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a38fb24b613c48fba2f15ee80713eab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1706453521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39498,9 +39589,39 @@ PrefabInstance:
       objectReference: {fileID: 280830792}
     - target: {fileID: 8915650821252716356, guid: dd456b1375822774da52b56e4a36673e,
         type: 3}
+      propertyPath: endGame
+      value: 
+      objectReference: {fileID: 8300000, guid: 5007e9e7e990ec14392843f061c3b19e, type: 3}
+    - target: {fileID: 8915650821252716356, guid: dd456b1375822774da52b56e4a36673e,
+        type: 3}
       propertyPath: npcBook
       value: 
       objectReference: {fileID: 947749843}
+    - target: {fileID: 8915650821252716356, guid: dd456b1375822774da52b56e4a36673e,
+        type: 3}
+      propertyPath: CaveDoor
+      value: 
+      objectReference: {fileID: 1578393182}
+    - target: {fileID: 8915650821252716356, guid: dd456b1375822774da52b56e4a36673e,
+        type: 3}
+      propertyPath: bossFight
+      value: 
+      objectReference: {fileID: 8300000, guid: 97cb623a6bcbf894e8323980e819dfad, type: 3}
+    - target: {fileID: 8915650821252716356, guid: dd456b1375822774da52b56e4a36673e,
+        type: 3}
+      propertyPath: slimeRush
+      value: 
+      objectReference: {fileID: 8300000, guid: 0b8625def4220f24ba9dc503a9f97529, type: 3}
+    - target: {fileID: 8915650821252716356, guid: dd456b1375822774da52b56e4a36673e,
+        type: 3}
+      propertyPath: hazineDoor
+      value: 
+      objectReference: {fileID: 1860252612}
+    - target: {fileID: 8915650821252716356, guid: dd456b1375822774da52b56e4a36673e,
+        type: 3}
+      propertyPath: HazineOdasi
+      value: 
+      objectReference: {fileID: 1697550377}
     - target: {fileID: 8915650821252716356, guid: dd456b1375822774da52b56e4a36673e,
         type: 3}
       propertyPath: FirstMission
@@ -39845,7 +39966,7 @@ PrefabInstance:
     - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.6
+      value: 63.4
       objectReference: {fileID: 0}
     - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
         type: 3}
@@ -39855,12 +39976,12 @@ PrefabInstance:
     - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -59.64
+      value: 12.59
       objectReference: {fileID: 0}
     - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99007946
+      value: 0.9630168
       objectReference: {fileID: 0}
     - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
         type: 3}
@@ -39870,7 +39991,7 @@ PrefabInstance:
     - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.14050844
+      value: 0.26944143
       objectReference: {fileID: 0}
     - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
         type: 3}
@@ -39885,7 +40006,7 @@ PrefabInstance:
     - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -16.155
+      value: 31.262
       objectReference: {fileID: 0}
     - target: {fileID: 8162200396802171769, guid: c9e8eb5dec332134dbdfccf07844caeb,
         type: 3}
@@ -39988,3 +40109,4 @@ SceneRoots:
   - {fileID: 205185420}
   - {fileID: 210153438}
   - {fileID: 1330132213569666061}
+  - {fileID: 1697550376}

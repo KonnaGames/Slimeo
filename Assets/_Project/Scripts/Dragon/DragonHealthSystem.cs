@@ -8,15 +8,20 @@ public class DragonHealthSystem : MonoBehaviour
     private float _blinkDuration = 0.1f;
     private int _blinkCount = 5;
 
+    public bool isDead = false;
+    
     public void Damage(int value)
     {
         _hearthCount -= value;
         StartCoroutine(Blink());
 
-        Debug.Log("Dragon hasar aldý!!!!!! ");
+        Debug.Log("Dragon hasar aldÃ½!!!!!! ");
 
         if (_hearthCount <= 0)
-            Destroy(transform.parent.gameObject);
+        {
+            isDead = true;
+            gameObject.transform.root.gameObject.SetActive(false);
+        }
     }
     
     private IEnumerator Blink()

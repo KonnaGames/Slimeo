@@ -77,22 +77,22 @@ public class DragonController : MonoBehaviour
             _isFireAttack = true;
             _animator.SetTrigger("fire");
 
+            var target = PlayerTransform.position;
             yield return new WaitForSeconds(1.7f);
-
-            StartCoroutine(SpawnFireball());
+            StartCoroutine(SpawnFireball(target));
         }
         yield return new WaitForSeconds(10f);
 
         _isFireAttack = false;
     }
 
-    private IEnumerator SpawnFireball()
+    private IEnumerator SpawnFireball(Vector3 target)
     {
         GameObject fireBall = Instantiate(_fireBallPrefab);
         fireBall.transform.position = _fireBallSpawnPoint.position;
         fireBall.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
 
-        Vector3 direction = (PlayerTransform.position - _fireBallSpawnPoint.position).normalized;
+        Vector3 direction = (target - _fireBallSpawnPoint.position).normalized;
         fireBall.AddComponent<Rigidbody>().AddForce(direction * 50, ForceMode.Impulse);
 
         yield return new WaitForSeconds(5f);

@@ -3,6 +3,7 @@ using System.Collections;
 using Test;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DefaultNamespace
 {
@@ -14,9 +15,14 @@ namespace DefaultNamespace
 
         public NPC_FirstMission FirstMission;
         public NPC_Book npcBook;
-        public TriggerBox doorTriggerBox;
-        public Dragon dragon;
-        public TriggerBox dragonTriggerBox;
+        public TriggerBox CaveDoor;
+        public TriggerBox HazineOdasi;
+        public CaveDoor hazineDoor;
+
+        [Header("Musics")] 
+        public AudioClip bossFight;
+        public AudioClip slimeRush;
+        public AudioClip endGame;
         
         
         
@@ -33,28 +39,30 @@ namespace DefaultNamespace
             UIDialogue.Instance.UpdateQuest("Talk To NPC");
             yield return new WaitUntil(() => FirstMission.isDone);
             
-            UIDialogue.Instance.UpdateQuest("Kitabi Ye");
-            yield return new WaitUntil(() => npcBook.IsTriggered);
-            
-            UIDialogue.Instance.UpdateQuest("Walk To The Door");
-            yield return new WaitUntil(() => doorTriggerBox.isTriggered);
-            
+            UIDialogue.Instance.UpdateQuest("Walk To The Cave");
+            yield return new WaitUntil(() => CaveDoor.isTriggered);
             // 2 Ejderha Gorevi
-            UIDialogue.Instance.UpdateQuest("Ejderhayi Bul");
-            yield return new WaitUntil(() => dragonTriggerBox.isTriggered);
+            UIDialogue.Instance.UpdateQuest("Beat All The Slimes");
+            MapAmbientMusic.Instance.ChangeMusic(slimeRush);
             
-            UIDialogue.Instance.UpdateQuest("Ejderhayla Konus");
-            yield return new WaitUntil(() => dragon.isDone);
-            UIDialogue.Instance.UpdateQuest("");
+            yield return new WaitUntil(() => EnemyManager.Instance.isAllEnemyDead);
+            
+            UIDialogue.Instance.UpdateQuest("Kill The Lizard");
+            MapAmbientMusic.Instance.ChangeMusic(bossFight);
 
+            yield return new WaitUntil(() => EnemyManager.Instance.isDragonDead);
+            hazineDoor.ToggleDoor(true);
+            
+            UIDialogue.Instance.UpdateQuest("Find The Tresure Room");
+            MapAmbientMusic.Instance.ChangeMusic(endGame);
 
+            yield return new WaitUntil(() => HazineOdasi.isTriggered);
+            
+            UIDialogue.Instance.UpdateQuest("Congrats.. You did it");
 
+            yield return new WaitForSeconds(5);
 
-
-
-
-
-
+            Application.Quit();
 
             yield return null;
         }

@@ -26,6 +26,11 @@ public class EnemyManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    public bool isAllEnemyDead = false;
+
+    public DragonHealthSystem _healthSystem;
+    public bool isDragonDead => _healthSystem == null ? false : _healthSystem.isDead;
+
     public void ActivateEnemiesAttack()
     {
         if (_isEnemiesAttackableActive)
@@ -45,14 +50,17 @@ public class EnemyManager : MonoBehaviour
             if (item.GetComponent<AIController>().IsDie)
                 count++;
         }
-
+        
         if (count >= _enemyList.Count)
         {
             if (!PlayerHealth.Instance.IsDie)
             {
-                Instantiate(_dragonPrefab, _dragonSpawnTransform.position, Quaternion.identity);
-                PlayerHealth.Instance.SetHearthCount(5);
+                var test = Instantiate(_dragonPrefab, _dragonSpawnTransform.position, Quaternion.identity);
+                _healthSystem = test.GetComponentInChildren<DragonHealthSystem>();
+                PlayerHealth.Instance.SetHearthCount(10);
             }
+
+            isAllEnemyDead = true;
         }
     }
 }
