@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2389567d15166da4cbfbd30f874251f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hearthCount: 3
+  _hearthCount: 10
   _renderer: {fileID: 7311065701908676347}
 --- !u!65 &3656262854536426021
 BoxCollider:

@@ -4,8 +4,8 @@ using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
+    public bool IsDie;
     public bool IsDamage = true;
-
     public eSize SlimeSize;
     public bool _isAttackable;
 

@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth Instance;
     public PlayerEaterTest eaterTest;
 
-    public bool IsPlay = true;
+    public bool IsDie = false;
 
     private float immunity = 0.5f;
     private float timer = 0;
@@ -42,12 +42,19 @@ public class PlayerHealth : MonoBehaviour
     {
         hearthCount -= value;
         StartCoroutine(Blink());
+        
+        if (hearthCount <= 0)
+            StartCoroutine(DieDelay());
+     
         Debug.Log("Took Damage");
     }
-
-    public void Die()
+     
+    private IEnumerator DieDelay()
     {
-        IsPlay = false;
+        IsDie = true;
+        yield return new WaitForSeconds(2f);
+        EnemyManager.Instance.RestartFight();
+        IsDie = false;
     }
 
     private IEnumerator Blink()

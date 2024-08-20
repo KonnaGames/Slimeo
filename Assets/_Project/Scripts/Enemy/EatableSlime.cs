@@ -3,6 +3,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 [Serializable]
 public class EatableSlime : MonoBehaviour, IEatable
@@ -30,7 +31,9 @@ public class EatableSlime : MonoBehaviour, IEatable
                 PlayerScaleController.Instance.IncreaseEatenSlimeCount();
                 _controller.gameObject.SetActive(false);
             });
-            
+            _controller.IsDie= true;
+
+            EnemyManager.Instance.CheckFightState();
             Debug.Log("Slime Yendi");
         }
     }

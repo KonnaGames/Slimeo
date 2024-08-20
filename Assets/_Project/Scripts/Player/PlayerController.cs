@@ -4,6 +4,7 @@ using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
+    public PlayerHealth PlayerHealth;
     [SerializeField] private Transform _spikePos;
     [SerializeField] private Transform Visual;
 
