@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0
+  m_AmbientIntensity: 0.5
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.20919915, g: 0.033775374, b: 0.31132078, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -4997,6 +4997,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 127002, guid: 99cdb7462838a6342bd2288456e75888,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 289312418}
+    - targetCorrespondingSourceObject: {fileID: 127002, guid: 99cdb7462838a6342bd2288456e75888,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 289312417}
     - targetCorrespondingSourceObject: {fileID: 127002, guid: 99cdb7462838a6342bd2288456e75888,
         type: 3}
@@ -5296,6 +5300,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.5781116, y: 1, z: 3.5177574}
   m_Center: {x: -0.075852714, y: 0, z: -0.06614677}
+--- !u!95 &289312418
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99952691}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: b69174d668ba02d44b14a084b217670a, type: 3}
+  m_Controller: {fileID: 9100000, guid: 990c50c0976fcc640ae4975bf6b6a5b0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &290693714 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2236145374683182113, guid: a8f4325ae0d00d948a3ff0f556a9cd3a,

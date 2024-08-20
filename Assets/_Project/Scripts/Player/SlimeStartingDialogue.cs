@@ -13,7 +13,6 @@ namespace Player
         [SerializeField] private DialogueLine dialogueLine;
         public DialogueLine _dialogueLine => dialogueLine;
 
-
         private IEnumerator Start()
         {
             yield return new WaitForSeconds(3);

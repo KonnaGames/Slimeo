@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
                                Debug.Log("Firlatti");
                                var rigid = item.AddComponent<Rigidbody>();
                                rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
-                               rigid.AddForce(Visual.forward * 35, ForceMode.Impulse);
+                               rigid.AddForce(Visual.forward * 50, ForceMode.Impulse);
                                item.transform.parent = null;
                            });
                     });
